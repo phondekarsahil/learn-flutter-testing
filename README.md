@@ -50,3 +50,35 @@ A good unit test should be independent from external factors
 For example execution order so if one test runs before another it shouldn't affect the test itself. We have to make sure that our unit tests don't depend on databases file systems, external factors and all of these because we want to get rid of all these dependencies. 
 
 A good unit test should be fast
+
+# Widget Testing
+
+This is a software testing part of the functional testing level of the testing pyramid.
+
+This test is for each component individually without integrating other components. So we don't want to speak with other components surrounding that.
+
+Tt is also called modular testing if you are taking it from an architectural perspective.
+
+A component tests on leave stuff out on purpose just to test the specific requirements that we have of course this
+
+But usually what we are doing is we taking a component and say we want to test this specific component by its behavior without communication to other components or like in unit tests without dependencies to other subsystems
+
+So for example we wouldn't call a database or asking any api calls
+
+It is important for us that we have to define the component that we want to test. So for example if we want to test a log in widget or a login screen or a login component that could include a lot of different components underneath of it.
+
+It is important that we define the scope what we want to test and we have to be very specific with that
+
+The main goal of a component and widget tests is always to find bugs and also make sure that the system requirements, that business gave us will work
+
+So for example a login screen should log in and navigate the user to another part of the screen or a scroll widget should scroll to a specific part with a specific speed
+
+So what is the benefit of a widget test regarding to a unit test. A unit test is very small and precise to one function or method.
+
+So for example we have maybe a text field that we can test for the username but we could go also one level higher to see the login form or going one level higher to have the whole login component inside that we can test now for login behavior like navigating a user after we click the certain button we check out if the text fields are working correctly.
+
+The main goal for a widget or component test is always to find bugs bugs in the system requirements that business gave us. So for example business don't allows user names that are longer than eight letters we can check that in a component test
+
+We can also check that in a unit test but a unit test would maybe only check the validator with a component test we also check the
+components surrounding it, is it visualized correctly, is the ui behave and react on the stuff that we have and so on and so forth.
+
