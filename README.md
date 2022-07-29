@@ -128,10 +128,38 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-
-  testWidgets("failing test example", (WidgetTester tester) async {
-    expect(2 + 2, equals(5));
+  group('App Test', () {
+    testWidgets("full app test", (tester) async {
+      // TODO: Integration test
+    });
   });
 }
 ```
+
+### Running Integration Test
+
+1. To run on an Mobile device, first open the android emulator and let it be up and running. Then use the following command
+```
+flutter drive --driver=test_driver/integration_test_driver.dart --target=integration_test/app_test.dart
+```
+
+2. To run on an Web server or browser, first we need to run the chrome driver on port 4444.
+
+    A. Download the chromedrive.exe file. (Make sure that the version of chromedriver is same as the installed chrome browser)
+
+    B. Copy the path to the chromedriver.exe file and run the following command. This will start the chrome driver on port 4444 
+    ```
+    C:\Users\Admin\Documents\SOFTWARES\chromedriver.exe --port=4444
+    ```
+
+    C. Run the test file using the following command
+    ```
+    flutter drive --driver=test_driver/integration_test_driver.dart --target=integration_test/app_test.dart -d web-server
+    ```
+    This will run headless
+
+    D. To run on chrome browser use following command
+    ```
+    flutter drive --driver=test_driver/integration_test_driver.dart --target=integration_test/app_test.dart -d chrome
+    ```
+
