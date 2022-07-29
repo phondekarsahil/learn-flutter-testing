@@ -82,3 +82,56 @@ The main goal for a widget or component test is always to find bugs bugs in the 
 We can also check that in a unit test but a unit test would maybe only check the validator with a component test we also check the
 components surrounding it, is it visualized correctly, is the ui behave and react on the stuff that we have and so on and so forth.
 
+# Integration Testing
+
+Integration testing shows the most amount of automation and also gives us the most powerful insights in how the application works
+
+What it does is it mimics user behavior. It clicks through your app, it scrolls inside of it and it tries to recreate the user interaction for a specific use case.
+
+For example have a login screen and the user interaction test or the integration test would be that, your integration test runs through the login screen, selects every text input field enters some values, tries out if the correct ones work but also if the wrong ones work. So if you have an error case that you show a validation message this should be triggered by an integration test. Next we can now click on login and switch to the next screen so all of that can be tested with an integration test
+
+So for integration test you take one complete use case from your application like login for example or if you have a payment system you could also test that and then you can run your application with an integration test.
+
+You can run it on multiple devices also on aws device forms or on firebase which also allows to run it on multiple devices so you can make sure that your app is running on different devices exactly the same.
+
+### Advantages of integration testing:
+
+1. Tests runs on reak devices and emulators alike
+2. High confidence that app works correctly
+3. No manually clicking in the application
+
+### Downsides of flutter integration testing:
+1. Flutter don't allow us out of the box to create multiple test files for it.
+2. It needs to run and startup the application always
+3. Additional files and code are needed - more boilerplate
+
+### Steps to add integration testing:
+1. Add the integration_test dependency (https://github.com/flutter/flutter/tree/main/packages/integration_test)
+```yml
+dev_dependencies:
+  integration_test:
+    sdk: flutter
+```
+
+2. Create a Driver Entrypoint: For this create a folder `test_driver/` and add file `integration_test_driver.dart`
+
+3. Create a main() function in that file and run the integration driver.
+```dart
+import 'package:integration_test/integration_test_driver.dart';
+
+void main() => integrationDriver();
+
+```
+4. Create a `integration_test/` directory for your package. In this directory, create a `<name>_test.dart`, using the following as a starting point to make assertions.
+```dart
+import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
+
+void main() {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets("failing test example", (WidgetTester tester) async {
+    expect(2 + 2, equals(5));
+  });
+}
+```
